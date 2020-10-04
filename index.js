@@ -1,3 +1,5 @@
+//Import severless
+let serverless = require('serverless-http');
 // Import express
 let express = require('express');
 // Import Body parser
@@ -15,7 +17,9 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 // Connect to Mongoose and set connection variable
-mongoose.connect('mongodb://localhost/resthub', { useNewUrlParser: true});
+mongoose.connect('mongodb+srv://mrchensheng21:9632a594A@cluster0.9i8lv.mongodb.net/jsbackend?retryWrites=true&w=majority'
+        , { useNewUrlParser: true,
+            useUnifiedTopology: true});
 var db = mongoose.connection;
 
 // Added check for DB connection
@@ -39,3 +43,6 @@ app.listen(port, function () {
 });
 
 module.exports = app
+
+module.exports.handler = serverless(app)
+
