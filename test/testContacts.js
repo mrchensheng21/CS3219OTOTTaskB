@@ -67,4 +67,6 @@ describe("Contact Test", () => {
                 })
         })
     });
+
+    contactList = {};
 })
