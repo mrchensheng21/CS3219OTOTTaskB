@@ -1,13 +1,13 @@
-import chai from 'chai';
-import chaiHttp from 'chai-http';
-import app from '../index';
-import contactModel from '../contactModel'
+let chai = require('chai')
+let chaiHttp = require('chai-http')
+let app = require('../index');
+let contactModel = require('../contactModel');
 
 const { update } = require('../contactModel');
 
 //configuring chai
 chai.use(chaiHttp);
-chai.should();
+let should = chai.should();
 
 
 let dummyContact = {
@@ -19,11 +19,6 @@ let dummyContact = {
 
 describe("Contact Test", () => {
     let contactList = {};
-    after((done) => {
-        contactModel.remove({}, (err) => {
-            done();
-        });
-    });
     describe("POST", () => {
         it('should post a contact', (done) => {
             chai.request(app)

@@ -1,4 +1,3 @@
-
 // api-routes.js
 // Initialize express router
 let router = require('express').Router();
@@ -10,7 +9,7 @@ router.get('/', function (req, res) {
     });
 });
 // Import contact controller
-var contactController = require('./contactController');
+let contactController = require('./contactController');
 // Contact routes
 router.route('/contacts')
     .get(contactController.index)

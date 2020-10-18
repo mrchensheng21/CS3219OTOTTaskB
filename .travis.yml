@@ -5,8 +5,21 @@ node_js:
 services: mongodb
 install:
     - npm install
+    - npm install -g serverless
+
+cache: npm
+
+
+before_script:
+    - serverless config credentials --provider aws --key $access_key --secret $AWSSECRET
 
 script:
     - npm run test
 
-cache: npm
+after_success:
+    - sls deploy
+
+env:
+    global:
+        - secure: nMIGJAoGBAKY1mJtfyxF51Z8XSE4q/kLixEUegc4UGyP0lTH/URfJ3Yg7HzNwOXNg\nxWYtBWg8foI6H71J25iDGFYFA7ihY1GwDDlfd/RmYzBHD3nrVRdzYvvqKZgAfS9J\nvQnqfMVBRNYlP6osvgf394BvOTCrXh7WEQX6zLD0PO1wKgIEHhBzAgMBAAE=
+
