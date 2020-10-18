@@ -36,7 +36,7 @@ describe("Contact Test", () => {
                 contactList= res.body.data;
                 done();
             });
-        });
+        }).timeout(8000);
     });
     describe("GET", () => {
         it('it should not get contacts', (done) => {
