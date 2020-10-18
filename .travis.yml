@@ -1,25 +1,18 @@
 language: node_js
-
 node_js:
-    - lts/*
+- lts/*
 services: mongodb
 install:
-    - npm install
-    - npm install -g serverless
-
+- npm install
+- npm install -g serverless
 cache: npm
-
-
 before_script:
-    - serverless config credentials --provider aws --key $access_key --secret $AWSSECRET
-
+- serverless config credentials --provider aws --key $ACCESS --secret $AWSSECRET
 script:
-    - npm run test
-
+- npm run test
 after_success:
-    - sls deploy
-
+- sls deploy
 env:
-    global:
-        - secure: nMIGJAoGBAKY1mJtfyxF51Z8XSE4q/kLixEUegc4UGyP0lTH/URfJ3Yg7HzNwOXNg\nxWYtBWg8foI6H71J25iDGFYFA7ihY1GwDDlfd/RmYzBHD3nrVRdzYvvqKZgAfS9J\nvQnqfMVBRNYlP6osvgf394BvOTCrXh7WEQX6zLD0PO1wKgIEHhBzAgMBAAE=
-
+  global:
+  - secure: vq72Y5rlGe/R5EM+w9Ha9wy6VZL8KI9zdOyXIriahMb/lFNUB33utSTF4TNANJ26kgrtaAzLXGG4JepD+FW0g5Gd+Zop48x2zAlnxBD+VAhe+Ht1LojbuhvEOAK8nhXEMqp6F1aSY/K9HlP1A2ZZBDXgUfD2gQx0hbxwjaj7vZHY4HjVmalbgOB0jjKBwrKKoOvvywyY4jQw6N+MGH2gEdOGgQm7CCAirgZvQiriQ68Y2wT/F+ZeKfX7lJex8qOaQG6tLJouRUzK45GxS1pk5gDJGMm/RswxOZsc4V/OkVw4L51oAS8B+hEaeqSClRD6SRwa+sRauBnDQ1dwZK6LenpUiv1INAcyOjphfM+MHGtqAmtZlgIiXFuj/gfaDmeZaFVwTeaO4arDA4vFR4xFuWK2aVVXQMbXF1Kk9SqhquRgNUUhuZDkPJJETa9tDL1I5TVrMay7rnO40gOW7FIC+o28W81H8vgp6BO81i+FnQ3S2rdx8RjLfjGlkLgu25BNcGMTIJA/nsdRM6VKkWMASCaDe+1Q3YO/t8PfG8HR04jtzn4SehuVOLsKjMm6UGGhBbr9Gaa4UeiZuops1PVXXoMjI7yZoew2POohsuPRa4Q2ZK3Nf6K30NTBxwt3QW7iShWnEtjHYILTfnK9Orc2soQWpaUjElidwZjn1YQX+uY=
+  - secure: G9YSvrzVpiGDt3YYuw1TiD81x57MV2IAIJdnYzZ84hIm7U0hVjHO2AHdydcP/rmdti2jMeLDXPwOoa6eA5vpl0WAVovVfuL6UueDSH/jtkMAPa+favG1pHz/KJboiRIsUUC1tThP1vdbSWon5h/nY/TvpO2qHDRBQBXhoj/c8ovJQsYawIsqN6pAOEa35l9nYuz7Gd4YovT5v+HgciRZO5TqmV2DQXqgzRCYqDHxsSxfYYjMEJJjZZ799fPbFOEdd7S6JNmFcgtz3l9ixZgdYisCDb0+WvmEt75RLMHbDumAJnoCwlg6HWpPlz/LEmTORFM49bZubxyffn9GVenbf1Sdo/cc5TggaRghK5YV2uWnN87XaUqg2FPeS0Ll3FJ7uKlU6J415bs9YKFNQa3JTDOFaj48xKTA12R5kYxyMSOUYzc7yDi0PoZHBRiVDpasRXUH3OJpZ4xbQAYSHvuZYPSwGEiC/gW80ItAc3pn3ZcIm3B7FrwZpmPmWgml/wlJo145l81y+bzb41LIgdTNzAQSPZfzT1FVJWZ4aqkdAqTtksSr/R9REn3iv+AhiKBmHXjYu6l2ftkJVIvojhh4CfhvWgL/e4A8oJyBBFvg0YdRr9oVmXp9hk+hXU4oS//Dfi1plh5E3+mlPJTrR0ByWmDZ9LCosZDP+4hMOluk/bg=
