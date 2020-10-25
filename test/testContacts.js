@@ -39,17 +39,6 @@ describe("Contact Test", () => {
         }).timeout(8000);
     });
     describe("GET", () => {
-        it('it should not get contacts', (done) => {
-            chai.request(app)
-                .get('/api/contacts')
-                .end((err, res) => {
-                    res.should.have.status(200);
-                    res.body.should.be.a('object');
-                    res.body.should.have.property('data');
-                    res.body.data.length.should.be.eql(1);
-                    done();
-                })
-        });
         it('it should get contact', (done) => {
             const contactID = contactList._id;
             chai.request(app)
@@ -67,6 +56,44 @@ describe("Contact Test", () => {
                 })
         })
     });
+    describe("UPDATE", () => {
+        it('It should update the contact with the correct contactid', (done) => {
+            const contactID = contactList._id;
+            const updateData = {
+                name : "Mary Jane",
+                email : "maryjane@gmail.com",
+                gender : "Female",
+                phone : "92228222",
+            }
+            chai.request(app)
+                .put('/api/contacts/' + contactID)
+                .send(updateData)
+                .end((err, res) => {
+                    res.should.have.a.status(200);
+                    res.body.should.be.a('object');
+                    res.body.should.have.a.property('data');
+                    res.body.data.should.have.property('_id').eql(contactID);
+                    res.body.data.should.have.property('name').eql('Mary Jane');
+                    res.body.data.should.have.property('email').eql('maryjane@gmail.com');
+                    res.body.data.should.have.property('gender').eql('Female');
+                    res.body.data.should.have.property('phone').eql('92228222');
+                    done();
+                })
+        })
+    }).timeout(8000);
+    describe("DELTE", () => {
+        it('it should delete an existing contact with correct contact id', (done) => {
+            const contactID = contactList._id;
+            chai.request(app)
+                .delete('/api/contacts/' + contactID)
+                .end((err, res) => {
+                    res.should.have.a.status(200);
+                    res.body.should.be.a('object');
+                    res.body.should.have.property('status').eql('success');
+                    res.body.should.have.property('message').eql('Contact deleted');
+                    done();
+                })
+        })
 
-    contactList = {};
+    });
 })
