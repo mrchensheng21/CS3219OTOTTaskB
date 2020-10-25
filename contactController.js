@@ -78,7 +78,7 @@ exports.delete = (req, res) => {
             res.send(err);
         res.json({
             status: "success",
-            message: 'Contact deleted'
+            message: "Contact deleted"
         });
     });
 };
