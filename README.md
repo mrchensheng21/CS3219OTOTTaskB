@@ -105,7 +105,7 @@ For ```DELETE```:
 1. In the root folder, run ```npm run dev``` to start the backend application locally
 2. Terminal should display ```Db connected successfully``` and running at port 8080.
 
-Open another terminal to set up 
+Open another terminal to set up frontend.
 #### Setting up frontend:
 1. Enter in terminal ```cd contacts-app``` and run ```npm run serve -- --port 4040``` to run the frontend at port 4040
 
@@ -118,13 +118,13 @@ For ```POST```:
 3. Click submit and the information will be posted to the database.
 
 For ```DELETE```:
-1. Navigate to ```Update/Delete ``` tab of the navigation bar.
+1. Navigate to ```Update/Delete``` tab of the navigation bar.
 2. Copy the ```contact id``` which is found at the bottom of the contact at the home page.
 3. Input the ```contact id``` and click delete.
 4. The selected contact should be deleted from the database.
 
 For ```UPDATE```:
-1. Navigate to ```Update/Delete ``` tab of the navigation bar.
+1. Navigate to ```Update/Delete``` tab of the navigation bar.
 2. Copy the ```contact id``` which is found at the bottom of the contact at the home page.
 3. Input the ```contact id``` and click update.
 4. Input the fields that you want to update and leave blank to leave the data untouched.

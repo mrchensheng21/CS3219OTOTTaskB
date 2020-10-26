@@ -40,7 +40,7 @@ app.get('/', (req, res) => res.send('Connected!'))
 app.use('/api', apiRoutes);
 // Launch app to listen to specified port
 app.listen(port, function () {
-    console.log("Running RestHub on port " + port);
+    console.log("Running Backend on port " + port);
     
 })
 
