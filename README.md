@@ -33,7 +33,7 @@ Here are the steps to follow:
 7. For ```GET```, ```POST```, ```UPDATE```, ```DELETE```, we are using POSTMAN to call these APIs.
 8. Click on create a request to begin executing API.
 
-![alt text](images/Postman_Create_Request.png "Postman create a request")
+![Create Request](Images/Postman_Create_Request.png)
 
 For ```POST```:
 1. Click on the body tab and select the ```x-www-form-urlencoded```.
@@ -41,10 +41,14 @@ For ```POST```:
 3. Enter ```http://localhost:8080/api/contacts``` for the URL.
 4. Once it is filled, press send and it will display ```New contact created!```.
 
+![Post Request](Images/Post.png)
+
 For ```GET```:
 1. Click on the body tab and select the ```x-www-form-urlencoded```
 2. Enter ```http://localhost:8080/api/contacts``` for the URL.
 3. Press send and it will display the list of contacts.
+
+![Get Request](Images/Get.png)
 
 For ```UPDATE```:
 1. Ensure that there is at least a contact in the database.
@@ -53,15 +57,21 @@ For ```UPDATE```:
 4. Select ```Patch``` or ```Put``` and input the key and the value of the information you want to change.
 5. Press send and it will update the contacts.
 
+![Update Request](Images/Update.png)
+
 For ```DELETE```:
 1. Ensure that there is at least a contact in the database.
 2. Click on the body tab and select the ```x-www-form-urlencoded```.
 3. Enter ```http://localhost:8080/api/contacts/{contactid}```, where ```{contactid}``` is the id of the contact we want to delete.
 4. Press send and it will delete the contact.
 
+![Delete Request](Images/Delete.png)
+
 ### References
 [Building a RESTFUL API](https://medium.com/@dinyangetoh/how-to-build-simple-restful-api-with-nodejs-expressjs-and-mongodb-99348012925d)
 
+
+## Task B2: Running test locally and via Travis
 
 ### Required Application
 
@@ -69,8 +79,7 @@ For ```DELETE```:
 * Mocha
 * Chai
 
-## Task B2: Running test locally and via Travis
-
+### Steps to follow:
 1. Do step 1-3 for B1.
 2. Input ```npm run test``` in the terminal to run the test cases, it should all pass.
 3. Head to [Travis](https://travis-ci.org/) and select the cloned repository.
@@ -113,18 +122,20 @@ Open another terminal to set up frontend.
 1. Enter in terminal ```cd contacts-app``` and run ```npm run serve -- --port 4040``` to run the frontend at port 4040
 
 ### Steps to execute API at frontend:
-Home page will display all the contacts that is in the database.
 
 For ```POST```:
 1. Navigate to the contact form by clicking on the ```ContactForm``` tab on the navigation bar.
 2. Input ```Email Address```, ```Name```, ```Phone Number``` and choose ```Gender```.
 3. Click submit and the information will be posted to the database.
 
-For ```DELETE```:
-1. Navigate to ```Update/Delete``` tab of the navigation bar.
-2. Copy the ```contact id``` which is found at the bottom of the contact at the home page.
-3. Input the ```contact id``` and click delete.
-4. The selected contact should be deleted from the database.
+![Post Details](Images/PostDetails.png)
+
+![Post Success](Images/PostSuccess.png)
+
+For ```GET```:
+Home page will display all the contacts that is in the database.
+
+![Get Frontend](Images/GetFrontend.png)
 
 For ```UPDATE```:
 1. Navigate to ```Update/Delete``` tab of the navigation bar.
@@ -133,6 +144,23 @@ For ```UPDATE```:
 4. Input the fields that you want to update and leave blank to leave the data untouched.
 5. Click update once done and the selectd contact should be updated.
 
+![Contact ID](Images/ContactID.png)
+
+![Edited Form](Images/EditedForm.png)
+
+![Updated Success](Images/UpdatedSuccess.png)
+
+![Updated Get](Images/UpdatedGet.png)
+
+For ```DELETE```:
+1. Navigate to ```Update/Delete``` tab of the navigation bar.
+2. Copy the ```contact id``` which is found at the bottom of the contact at the home page.
+3. Input the ```contact id``` and click delete.
+4. The selected contact should be deleted from the database.
+
+![Contact ID](Images/ContactID.png)
+
+![Delete Success](Images/DeleteSuccess.png)
 
 ### References
 
