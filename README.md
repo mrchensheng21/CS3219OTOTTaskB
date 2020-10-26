@@ -30,7 +30,10 @@ Here are the steps to follow:
 4. Upon ensuring terminal is connected to mongoDB, run ```nodemon index``` to start the app running in local server.
 5. Access http://localhost:8080. If ```Connected!``` is shown, localhost is successfully deployed.
 6. Go to http://localhost:8080/api/contacts to retrieve the contacts, if any.
-7. For ```GET```, ```POST```, ```UPDATE```, ```DELETE```, we are using POSTMAN to call these APIs:
+7. For ```GET```, ```POST```, ```UPDATE```, ```DELETE```, we are using POSTMAN to call these APIs.
+8. Click on create a request to begin executing API.
+
+![alt text](images/Postman_Create_Request.png "Postman create a request")
 
 For ```POST```:
 1. Click on the body tab and select the ```x-www-form-urlencoded```.
