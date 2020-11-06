@@ -29,7 +29,7 @@ exports.new = (req, res) => {
 // save the contact and check for errors
     contact.save((err) => {
         if (err)
-            res.json(err);
+           return res.json(err);
         res.json({
             message: 'New contact created!',
             data: contact
@@ -41,9 +41,9 @@ exports.new = (req, res) => {
 exports.view = (req, res) => {
     Contact.findById(req.params.contact_id, (err, contact) => {
         if (err)
-            res.send(err);
+            return res.send(err);
         res.json({
-            message: 'Contact details loading..',
+            message: 'Contact Loaded',
             data: contact
         });
     });
@@ -53,7 +53,7 @@ exports.view = (req, res) => {
 exports.update = (req, res) => {
     Contact.findById(req.params.contact_id, (err, contact) => {
         if (err)
-            res.send(err);
+            return res.send(err);
         contact.name = req.body.name ? req.body.name : contact.name;
         contact.gender = req.body.gender ? req.body.gender: contact.gender;
         contact.email = req.body.email ? req.body.email: contact.email;
@@ -61,7 +61,7 @@ exports.update = (req, res) => {
         // save the contact and check for errors
         contact.save((err) => {
             if (err)
-                res.json(err);
+                return res.json(err);
             res.json({
                 message: 'Contact Info updated',
                 data: contact
@@ -75,7 +75,7 @@ exports.delete = (req, res) => {
         _id: req.params.contact_id
     }, (err, contact) => {
         if (err)
-            res.send(err);
+            res.send(err)
         res.json({
             status: "success",
             message: "Contact deleted"

@@ -142,8 +142,8 @@ export default {
             this.message = "Contact Updated!";
           }
         })
-        .catch(error => {
-          this.message = error.message;
+        .catch(() => {
+          this.message = "Failed";
         });
     },
     showList(evt) {

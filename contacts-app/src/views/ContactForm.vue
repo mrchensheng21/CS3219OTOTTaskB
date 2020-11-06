@@ -8,7 +8,7 @@
       >
         <b-form-input
           id="input-1"
-          v-model="email"
+          v-model="formDetailsEmail"
           type="email"
           required
           placeholder="Enter email"
@@ -18,7 +18,7 @@
       <b-form-group id="input-group-2" label="Your Name:" label-for="input-2">
         <b-form-input
           id="input-2"
-          v-model="name"
+          v-model="formDetailsName"
           required
           placeholder="Enter name"
         ></b-form-input>
@@ -27,7 +27,7 @@
       <b-form-group id="input-group-3" label="Phone:" label-for="input-3">
         <b-form-input
           id="input-3"
-          v-model="phone"
+          v-model="formDetailsPhone"
           required
           placeholder="Enter phone"
         ></b-form-input>
@@ -36,7 +36,7 @@
       <b-form-group id="input-group-4" label="Gender:" label-for="input-4">
         <b-form-select
           id="input-4"
-          v-model="gender"
+          v-model="formDetailsGender"
           :options="genders"
           required
         ></b-form-select>
@@ -45,58 +45,81 @@
       <b-button type="submit" variant="primary">Submit</b-button>
       <b-button type="reset" variant="danger">Reset</b-button>
     </b-form>
-    {{ message }}
   </div>
 </template>
 
 <script>
-import axios from "axios";
 export default {
   data() {
     return {
-      email: "",
-      name: "",
-      phone: "",
-      gender: null,
-      message: "",
-      genders: [{ text: "Select One", value: null }, "Male", "Female"],
+      genders: [{ value: null, text: "Select gender" }, "Male", "Female"],
       show: true
     };
+  },
+  computed: {
+    formDetailsName: {
+      get() {
+        return this.$store.state.contact.contactForm.name;
+      },
+      set(value) {
+        this.$store.commit("setContactFormAttribute", {
+          field: "name",
+          value
+        });
+      }
+    },
+    formDetailsEmail: {
+      get() {
+        return this.$store.state.contact.contactForm.email;
+      },
+      set(value) {
+        this.$store.commit("setContactFormAttribute", {
+          field: "email",
+          value
+        });
+      }
+    },
+    formDetailsPhone: {
+      get() {
+        return this.$store.state.contact.contactForm.phone;
+      },
+      set(value) {
+        this.$store.commit("setContactFormAttribute", {
+          field: "phone",
+          value
+        });
+      }
+    },
+    formDetailsGender: {
+      get() {
+        return this.$store.state.contact.contactForm.name;
+      },
+      set(value) {
+        this.$store.commit("setContactFormAttribute", {
+          field: "gender",
+          value
+        });
+      }
+    }
   },
   methods: {
     postContact(evt) {
       evt.preventDefault();
-      const data = {
-        name: this.name,
-        email: this.email,
-        gender: this.gender,
-        phone: this.phone
-      };
-      axios
-        .post("/api/contacts", data)
-        .then(() => {
-          (this.name = ""),
-            (this.email = ""),
-            (this.phone = ""),
-            (this.gender = ""),
-            (this.show = false),
-            (this.message = "Successful !"),
-            this.$nextTick(() => {
-              this.show = true;
-            });
-        })
-        .catch(() => {
-          this.message = "Submit form failed";
+      this.$store
+        .dispatch("saveContact")
+        .then(alert("Contact Added"))
+        .catch(error => alert("Error: " + error.toString()))
+        .finally(() => {
+          this.$store.commit("resetContactForm");
+          this.show = false;
+          this.$nextTick(() => {
+            this.show = true;
+          });
         });
     },
     onReset(evt) {
       evt.preventDefault();
-      // Reset our form values
-      this.email = "";
-      this.name = "";
-      this.phone = "";
-      this.gender = null;
-      // Trick to reset/clear native browser form validation state
+      this.$store.commit("resetContactForm");
       this.show = false;
       this.$nextTick(() => {
         this.show = true;

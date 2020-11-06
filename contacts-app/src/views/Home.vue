@@ -2,15 +2,11 @@
   <div class="home">
     <b-container>
       <b-row>
-        <contacts-card
-          v-for="contact in contacts"
+        <ContactsCard
+          v-for="contact in contactList"
           :key="contact._id"
-          :name="contact.name"
-          :email="contact.email"
-          :phone="contact.phone"
-          :gender="contact.gender"
-          :contactid="contact._id"
-        ></contacts-card>
+          :contactDetails="contact"
+        ></ContactsCard>
       </b-row>
     </b-container>
   </div>
@@ -18,28 +14,79 @@
 
 <script>
 // @ is an alias to /src
-import axios from "axios";
 import ContactsCard from "@/components/ContactsCard.vue";
 
 export default {
   name: "Home",
   components: {
-    "contacts-card": ContactsCard
+    ContactsCard
   },
   data() {
     return {
-      contacts: [],
-      email: "",
-      name: "",
-      phone: "",
-      gender: "",
-      message: ""
+      contactList: null
     };
   },
-  mounted() {
-    axios.get("/api/contacts").then(res => {
-      this.contacts = res.data.data;
-    });
+  beforeMount() {
+    this.$store.dispatch("getContactList");
+    this.contactList = this.$store.state.contact.contactList;
+  },
+  computed: {
+    contactDetailsName: {
+      get() {
+        return this.$store.state.contact.contactDetails.name;
+      },
+      set(value) {
+        this.$store.commit("setContactDetailsAttribute", {
+          field: "name",
+          value
+        });
+      }
+    },
+    contactDetailsEmail: {
+      get() {
+        return this.$store.state.contact.contactDetails.email;
+      },
+      set(value) {
+        this.$store.commit("setContactDetailsAttribute", {
+          field: "email",
+          value
+        });
+      }
+    },
+    contactDetailsPhone: {
+      get() {
+        return this.$store.state.contact.contactDetails.phone;
+      },
+      set(value) {
+        this.$store.commit("setContactDetailsAttribute", {
+          field: "phone",
+          value
+        });
+      }
+    },
+    contactDetailsGender: {
+      get() {
+        return this.$store.state.contact.contactDetails.name;
+      },
+      set(value) {
+        this.$store.commit("setContactDetailsAttribute", {
+          field: "gender",
+          value
+        });
+      }
+    },
+    getSetContactList: {
+      get() {
+        return this.$store.state.contact.contactList;
+      }, set(value) {
+        this.$store.commit('setContactList', value)        
+      }
+    }
+  },
+  watch: {
+    getSetContactList(updated) {
+      this.contactList = updated;
+    }
   }
 };
 </script>

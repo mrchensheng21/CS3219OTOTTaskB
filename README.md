@@ -150,7 +150,7 @@ For ```UPDATE```:
 
 ![Updated Success](Images/UpdatedSuccess.png)
 
-![Updated Get](Images/UpdatedGet.png)
+![Updated Get](Images/EditedGet.png)
 
 For ```DELETE```:
 1. Navigate to ```Update/Delete``` tab of the navigation bar.
